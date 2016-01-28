@@ -1,13 +1,18 @@
 class Loan < ActiveRecord::Base
   has_many :payments
 
-  after_save :set_outstanding_balance
+  before_save :set_outstanding_balance
 
-  # def outstanding_balance
-  #   self.payments.map { |payment| self.funded_amount -= payment.amount.to_f }
-  # end
-
-  def set_outstanding_balance
-    self.outstanding_balance = self.funded_amount
+  def total_payments
+    self.payments.sum(:amount)
   end
+
+  def outstanding_balance
+    self.funded_amount - total_payments
+  end
+
+  def as_json(options={})
+    super(options.merge(methods: :outstanding_balance))
+  end
+
 end
