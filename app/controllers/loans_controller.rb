@@ -6,6 +6,7 @@ class LoansController < ApplicationController
 
   def index
     render json: Loan.all
+    p Loan.all
   end
 
   def show
