@@ -8,7 +8,7 @@ RSpec.describe Loan, type: :model do
 
       it "Should set inital outstanding blance to funded amout" do
 
-      expect(loan.outstanding_blance).to be(loan.funded_amount)
+      expect(loan.outstanding_balance.to_f).to be(100.0)
     end
   end
 end
