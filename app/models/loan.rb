@@ -1,8 +1,6 @@
 class Loan < ActiveRecord::Base
   has_many :payments
 
-  before_save :outstanding_balance
-
   def total_payments
     self.payments.sum(:amount)
   end

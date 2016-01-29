@@ -1,1 +1,0 @@
-payment_controller_spec.rb
