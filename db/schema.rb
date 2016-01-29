@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128220912) do
+ActiveRecord::Schema.define(version: 20160129021442) do
 
   create_table "loans", force: :cascade do |t|
-    t.decimal  "funded_amount",       precision: 8, scale: 2
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.decimal  "outstanding_balance", precision: 8, scale: 2
+    t.decimal  "funded_amount", precision: 8, scale: 2
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "payments", force: :cascade do |t|
