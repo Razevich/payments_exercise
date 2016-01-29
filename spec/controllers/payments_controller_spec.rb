@@ -39,23 +39,23 @@ RSpec.describe PaymentsController, type: :controller do
   end
 
   describe "create" do
-    # context "if the payment is created" do
-    #   let(:loan) { Loan.create!(funded_amount: 100.0) }
-    #   let(:payment) {loan.payments.create(amount: 20.0)}
+    context "if the payment is created" do
+      let(:loan) { Loan.create!(funded_amount: 100.0) }
+      let(:payment) {loan.payments.new(amount: 20.0)}
 
-    #   it "creates payment" do
-    #   expect{
-    #     post :create, payment: payment.amount, loan_id: loan.id
-    #   }.to change(Payment,:count).by(1)
-    #   end
-    # end
+      it "creates payment" do
+      expect{
+        post :create, loan_id: loan.id, payment: payment.attributes
+      }.to change(Payment,:count).by(1)
+      end
+    end
 
     context "if the payment is not created" do
       let(:loan) { Loan.create!(funded_amount: 100.0) }
       let(:payment) {loan.payments.create(amount: 200.0)}
 
       it "responds with error" do
-      payment.errors.messages[:amount].should include("Payment can not exceed loans outstanding balance")
+      expect(payment.errors[:amount].size).to eq(1)
       end
     end
   end
